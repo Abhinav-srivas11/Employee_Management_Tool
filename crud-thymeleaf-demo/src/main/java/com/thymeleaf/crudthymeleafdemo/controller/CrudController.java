@@ -43,6 +43,7 @@ public class CrudController {
 		// since we need to work with page numbers for navigation purposes
 		// i have added the single attribute to model making it easier to access values
 		model.addAttribute("page", pageNo);
+		model.addAttribute("entriesSize", pageSize);
 		// calculating the max number of pages that are allowed
 		Integer numOfPages = (listEmployees.size() / pageSize) + 1;
 		// adding it to second attribute in our model

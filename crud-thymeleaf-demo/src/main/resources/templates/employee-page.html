@@ -12,9 +12,9 @@
 <div class="container jumbotron jumbotron-fluid" align="center">
 	<h1 class="display-4">Employee Management Tool</h1>
 </div>
-	<div class="container-sm">
+	<div class="container-sm" th:with="pageNum=${page}, entrySize=${entriesSize}">
 	<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px; text-align:left;">Add new employee</a>
-	<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px ; text-align:right;">Table Size</a>
+
 	
 	<div style="margin:10px">
 		<table border= 1 class="table table-hover table-bordered" >
@@ -38,14 +38,24 @@
 		</table>
 		</div>
 		<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px">Add new employee</a>
-		<nav aria-label="Page navigation example">
+		<div class="container-fluid">
+		<nav class="navbar">
 		  <ul class="pagination">
-		  <li class="page-item" th:if="${page - 1} >= 0 "><a class="page-link" th:href="@{/api/employees(pageNo=${page - 1})}">Previous</a></li>
-		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${1})}" th:utext="${page + 1}"> </a></li>
-		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${2})}" th:utext="${page + 2}"> </a></li>
-		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${page + 1})}">Next</a></li>
+		  <li class="page-item" th:if="${pageNum - 1} >= 0 "><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum - 1},pageSize=${entrySize})}">Previous</a></li>
+		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum},pageSize=${entrySize})}" th:utext="${pageNum + 1}"> </a></li>
+		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum + 1},pageSize=${entrySize})}" th:utext="${pageNum + 2}"> </a></li>
+		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum + 1},pageSize=${entrySize})}">Next</a></li>
 		  </ul>
 		</nav>
+		<nav class="navbar">
+		  <ul class="pagination">
+		  	<li class="page-item btn">No of Entries</li>
+		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum},pageSize=${10})}">10</a></li>
+		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum},pageSize=${20})}">20</a></li>
+		  </ul>
+		</nav>
+		</div>
+		
 	</div>
   	
 </body>
