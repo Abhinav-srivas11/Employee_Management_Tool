@@ -12,8 +12,11 @@
 <div class="container jumbotron jumbotron-fluid" align="center">
 	<h1 class="display-4">Employee Management Tool</h1>
 </div>
-	<div class="container-lg">
-	<a th:href="@{/api/employees/new}"  class="btn btn-primary">Add new employee</a>
+	<div class="container-sm">
+	<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px; text-align:left;">Add new employee</a>
+	<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px ; text-align:right;">Table Size</a>
+	
+	<div style="margin:10px">
 		<table border= 1 class="table table-hover table-bordered" >
 		  <tr>
 		    <th scope="col">ID</th>
@@ -27,11 +30,22 @@
 		    <td th:utext="${employee.firstName}">name</td>
 		    <td th:utext="${employee.lastName}">name</td>
 		    <td th:utext="${employee.Email}">email</td>
-		    <td><a th:href="@{/api/employees/showUpdateForm(employeeID=${employee.id})}">Update</a> | 
-		    <a th:href="@{/api/employees/delete(employeeID=${employee.id})}">Delete</a></td>
+		    <td>
+			    <a th:href="@{/api/employees/showUpdateForm(employeeID=${employee.id})}">Update</a> | 
+			    <a th:href="@{/api/employees/delete(employeeID=${employee.id})}">Delete</a>
+		    </td>
 		  </tr>
 		</table>
-		<a th:href="@{/api/employees/new}"  class="btn btn-primary">Add new employee</a>
+		</div>
+		<a th:href="@{/api/employees/new}"  class="btn btn-primary btn-sm" style="margin:10px">Add new employee</a>
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		  <li class="page-item" th:if="${page - 1} >= 0 "><a class="page-link" th:href="@{/api/employees(pageNo=${page - 1})}">Previous</a></li>
+		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${1})}" th:utext="${page + 1}"> </a></li>
+		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${2})}" th:utext="${page + 2}"> </a></li>
+		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${page + 1})}">Next</a></li>
+		  </ul>
+		</nav>
 	</div>
   	
 </body>
