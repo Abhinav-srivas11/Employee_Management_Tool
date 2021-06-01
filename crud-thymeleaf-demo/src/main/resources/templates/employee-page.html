@@ -18,13 +18,15 @@
 	
 	<div style="margin:10px">
 		<table border= 1 class="table table-hover table-bordered" >
-		  <tr>
-		    <th scope="col">ID</th>
-		    <th scope="col">First Name</th>
-		    <th scope="col">Last Name</th>
-		    <th scope="col">Email</th>
-		    <th scope="col">Action</th>
-		  </tr>
+		<thead  class = "thead-dark">
+			  <tr>
+			    <th scope="col">ID</th>
+			    <th scope="col">First Name</th>
+			    <th scope="col">Last Name</th>
+			    <th scope="col">Email</th>
+			    <th scope="col">Action</th>
+			  </tr>	
+		  </thead>
 		  <tr class="table-primary " th:each="employee : ${employees}">
 		    <td th:utext="${employee.id}"></td>
 		    <td th:utext="${employee.firstName}">name</td>
@@ -46,9 +48,7 @@
 		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum + 1},pageSize=${entrySize})}" th:utext="${pageNum + 2}"> </a></li>
 		    <li class="page-item" th:if="${page + 1} <= ${numOfPages}"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum + 1},pageSize=${entrySize})}">Next</a></li>
 		  </ul>
-		</nav>
-		<nav class="navbar">
-		  <ul class="pagination">
+		  <ul class="pagination" >
 		  	<li class="page-item btn">No of Entries</li>
 		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum},pageSize=${10})}">10</a></li>
 		    <li class="page-item"><a class="page-link" th:href="@{/api/employees(pageNo=${pageNum},pageSize=${20})}">20</a></li>
