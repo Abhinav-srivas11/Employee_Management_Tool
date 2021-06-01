@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hello Employees</title>
+  
+  <!-- Add CSS styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container-lg" align="center">
+		<form action="#" th:action="@{/api/save}" th:object="${employeeByID}" method="post">
+    		<label>First Name:</label>
+			<input type="text" th:field="*{firstName}" /><br/>
+			<label>Last Name:</label>
+			<input type="text" th:field="*{lastName}" /><br/>
+			<label>Email:</label>
+			<input type="email" th:field="*{email}" /><br/>
+			<!-- Add hidden form field to handle ID assignment -->
+			<!-- <input type="hidden" th:field="*{id}" />-->
+			<button type="submit">Save</button>
+		</form>
+	</div>
+  	
+</body>
+</html>

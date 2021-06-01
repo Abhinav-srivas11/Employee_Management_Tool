@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hello Employees</title>
+  
+  <!-- Add CSS styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container jumbotron jumbotron-fluid" align="center">
+	<h1 class="display-4">Employee Management Tool</h1>
+</div>
+	<div class="container-lg">
+	<a th:href="@{/api/employees/new}"  class="btn btn-primary">Add new employee</a>
+		<table border= 1 class="table table-hover table-bordered" >
+		  <tr>
+		    <th scope="col">ID</th>
+		    <th scope="col">First Name</th>
+		    <th scope="col">Last Name</th>
+		    <th scope="col">Email</th>
+		    <th scope="col">Action</th>
+		  </tr>
+		  <tr class="table-primary " th:each="employee : ${employees}">
+		    <td th:utext="${employee.id}"></td>
+		    <td th:utext="${employee.firstName}">name</td>
+		    <td th:utext="${employee.lastName}">name</td>
+		    <td th:utext="${employee.Email}">email</td>
+		    <td><a th:href="@{/api/employees/showUpdateForm(employeeID=${employee.id})}">Update</a> | 
+		    <a th:href="@{/api/employees/delete(employeeID=${employee.id})}">Delete</a></td>
+		  </tr>
+		</table>
+		<a th:href="@{/api/employees/new}"  class="btn btn-primary">Add new employee</a>
+	</div>
+  	
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Hello World - Thymeleaf</title>
+  
+  <!-- Add CSS styling -->
+  <link rel = "stylesheet" th:href="@{/css/styling.css}"/>
+</head>
+
+<body>
+  <p class="para" th:text="'the current date is ' + ${date}"/>
+</body>
+</html>
